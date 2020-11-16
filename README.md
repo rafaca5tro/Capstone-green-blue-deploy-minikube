@@ -1,4 +1,4 @@
-# Udacity-DevOps-Capstone-Blue-Green-Deployment
+# Capstone-green-blue-deploy-minikube | DevOps Engineer Nanodegree
 This is a Simple blue-green deployment in kubernetes using minikube, Capstone project, Cloud DevOps Nanodegree.
 
 ## objectives
