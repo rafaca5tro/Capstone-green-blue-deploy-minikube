@@ -1,0 +1,14 @@
+Resources:
+  capstone:
+    Type: 'AWS::EKS::Cluster'
+    Properties:
+      Name: capstone
+      Version: '1.17'
+      RoleArn: >-
+        arn:aws:iam::482702493340:role/capstone-eksClusterRole-1R1BL5XNESDCS
+      ResourcesVpcConfig:
+        SecurityGroupIds:
+          - sg-0aa366c9be3241f8f
+        SubnetIds:
+          - subnet-0674b52953df6974e
+          - subnet-0b70f62d730c4cad2
