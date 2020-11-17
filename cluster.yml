@@ -1,15 +1,29 @@
 ---
-apiVersion: eksctl.io/v1alpha5
-kind: ClusterConfig
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Amazon EKS Cluster Role'
 
-metadata:
-  name: capstone
-  region: us-east-2
-  version: '1.18'
-iam:
-  withOIDC: true 
-managedNodeGroups:
-- name: <ng-linux>
-  launchTemplate:
-    id: lt-<id>
-    version: "<1>"
+
+Resources:
+
+  eksClusterRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+            - eks.amazonaws.com
+          Action:
+          - sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
+
+Outputs:
+
+  RoleArn:
+    Description: The role that Amazon EKS will use to create AWS resources for Kubernetes clusters
+    Value: !GetAtt eksClusterRole.Arn
+    Export:
+      Name: !Sub "${AWS::StackName}-RoleArn"
